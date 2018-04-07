@@ -6,16 +6,17 @@ const AutoCompleteList = ({suggestions, selectCity}) => {
   if (!suggestions || suggestions.length === 0) {
     return <span></span>
   }
-  
-  const suggestionsJSX = suggestions.map(item => {
+
+  const suggestionsJSX = suggestions.map((item, idx) => {
     return (
       <AutoCompleteListItem
+        key={ idx }
         name={item}
         selectCity={selectCity}
       />
     );
   });
-  
+
   return (
     <span>
       {suggestionsJSX}

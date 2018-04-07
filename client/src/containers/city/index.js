@@ -1,48 +1,58 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class ClassName extends Component{
+import fetchCity from '../../actions/fetch_city';
+import Scam from '../../components/scam';
+
+class City extends Component{
   constructor() {
+    console.log('constructor');
     super();
-
     this.state = {
-      cityId: 'paris',
-      name: 'initial city',
-      header: 'imgSrc',
-      scams : [
-        {
-          scamId: 'id2',
-          header: 'Deaf signtures',
-          description: 'Blah Blah Blah description',
-          position: 'map coordonates',
-          previewPic: 'previewPic',
-          author: 'icewassim',
-          date: 'date of comment',
-          upVotes: 10,
-          downVotes: 5,
-        },
-      ],
+      city: {},
     }
   }
-  
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.props.fetchCity();
+  }
+
   render() {
-    const scamsJSX = this.state.scams.map(scam => {
-      return (
-        <div>
-          <div>Header: {scam.header}</div>
-          <div>Content: {scam.description}</div>
-          <div>Date: {scam.date}</div>
-          <div> Votes: {scam.upVotes - scam.downVotes} </div>
-        </div>
-      );
-    });
-    
-    
+    console.log('new rendering !!!!', this.props);
+    if(!this.props.city || !this.props.city.scams) {
+      return <button onClick={ this.props.fetchCity }> Go fetch </button>
+    }
+
+    const scamsJSX = this.props.city.scams.map(content => <Scam content={content}  />);
+
+    const city = this.props.city;
     return (
       <div>
-        <div>Name: { this.state.name }</div>
+        <div> Name: {city.name } </div>
+        <div> cityDescription: {city.description } </div>
+        <div> banner: {city.bannerImg } </div>
         <br />
         {scamsJSX}
       </div>
     );
   }
 }
+
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ fetchCity }, dispatch);
+}
+
+const mapStateToProps = state => {
+  return {
+    city: state.fetchCityResult,
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(City);

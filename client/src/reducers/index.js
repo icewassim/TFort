@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+
+import fetchCityReducer from './city.reducer';
 
 const rootReducer = combineReducers({
-  // autocompleCities: zipCodeReducer,
-  // rentQueryResult: rentQueryReducer,
-  form: formReducer,
+  fetchCityResult: fetchCityReducer,
 });
 
 export default rootReducer;
