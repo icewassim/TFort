@@ -1,7 +1,7 @@
-import scammsAPI from '../api/scams/index';
+import citiesApi from '../api/cities/index';
 
 const routes = server => {
-  scammsAPI(server);
+  citiesApi(server);
 }
 
 export default routes;

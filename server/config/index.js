@@ -2,7 +2,7 @@ const config = {
     NAME: 'API',
     VERSION: '0.0.1',
     db: {
-      URI: process.env.DB_PATH || 'mongodb://127.0.0.1:27017/crowler',
+      URI: process.env.DB_PATH || 'mongodb://127.0.0.1:27017/tfort',
     },
     logger: {
       LOG_DIR: process.env.LOGGER_DIR_PATH || './logs/Techlogs.txt',
