@@ -10,8 +10,8 @@ export const init = loggerDir => {
     },
     file: {
       filename: loggerDir,
-    }
+    },
   });
 
   global.loggerT = winston.loggers.get('tech');
-}
+};

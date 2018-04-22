@@ -10,7 +10,7 @@ const cityModel = new mongoose.Schema({
       description: String,
       position: String,
       previewImg: String,
-    }
+    },
   ],
 }, { minimize: false });
 
