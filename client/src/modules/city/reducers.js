@@ -1,11 +1,9 @@
-const scamsReducer = (state = [], action) => {
+export const fetchCity = (state = [], action) => {
   switch (action.type) {
-  case 'POST_NEW':
+  case 'CITY':
     return action.payload.data || state;
   default:
   }
 
   return state;
 };
-
-export default scamsReducer;

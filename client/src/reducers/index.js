@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import fetchCityReducer from './city.reducer';
-import scamsReducer from './scams.reducer';
+import { fetchCity } from '../modules/city/reducers';
+import { postScam } from '../modules/scams/reducers';
 
 const rootReducer = combineReducers({
   formReducer,
-  postScamResult: scamsReducer,
-  fetchCityResult: fetchCityReducer,
+  postScamResult: postScam,
+  fetchCityResult: fetchCity,
 });
 
 export default rootReducer;

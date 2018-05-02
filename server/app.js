@@ -21,9 +21,19 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser({ mapParams: true }));
 server.use(restify.fullResponse());
 
+const corsMiddleware = require('restify-cors-middleware');
+
+const cors = corsMiddleware({
+  preflightMaxAge: 5,
+  origins: ['http://localhost:8080'],
+});
+
+server.pre(cors.preflight);
+server.use(cors.actual),
+
 server.on('restifyError', (req, res, err) => {
   loggerT.error('error', err);
-  res.send(err)
+  res.send(err);
   return;
 });
 
@@ -49,11 +59,11 @@ server.listen(config.server.PORT, serverErr => {
       name: config.NAME,
       version: config.VERSION,
       port: config.server.PORT,
-      env: config.server.ENV
+      env: config.server.ENV,
     }));
-     routes(server);
+    routes(server);
   });
 
   // TODO: why is out of open
-  const db = mongoose.connect(config.db.URI);
+  mongoose.connect(config.db.URI);
 });

@@ -2,30 +2,23 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import fetchCity from '../../actions/fetch_city';
+import { fetchCity } from '../../modules/city/actions';
 import Scam from '../../components/scam';
-import ScamForm from '../../components/scam_form';
+import ScamForm from '../scam_form';
 
 class City extends Component {
   constructor() {
-    console.log('constructor');
     super();
     this.state = {
       city: {},
     };
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
   componentDidMount() {
-    console.log('componentDidMount');
     this.props.fetchCity();
   }
 
   render() {
-    console.log('new rendering !!!!', this.props);
     if (!this.props.city || !this.props.city.scams) {
       return <button onClick = { this.props.fetchCity }> Go fetch </button>;
     }

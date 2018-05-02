@@ -10,30 +10,29 @@ export default class SearchBar extends Component{
       'ROME',
       'PRAGUE'
     ];
-    
+
     this.state = {
       suggestions: [],
       searchTerm: '',
     }
-    
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.selectCity = this.selectCity.bind(this);
   }
-    
-  selectCity(city) {
-    console.log('selectedCity ::', city);
 
-    this.setState({ 
+  selectCity(city) {
+
+    this.setState({
       suggestions: [],
       searchTerm: '',
     });
   }
-    
+
   handleInputChange({ target }) {
     if (!target) {
       return;
     }
-    
+
     const value = target.value;
     const suggestions = this.cities.filter(city => city.indexOf(value.toUpperCase()) !== -1);
     this.setState({
@@ -41,16 +40,16 @@ export default class SearchBar extends Component{
       searchTerm: value,
     });
   }
-  
+
   render() {
     return (
       <div>
-        <input 
+        <input
           value={this.state.searchTerm}
           onChange={this.handleInputChange}
           placeholder="City Name"
         />
-        <AutoCompleteList 
+        <AutoCompleteList
           suggestions={this.state.suggestions}
           selectCity={this.selectCity}
         />
